@@ -1,0 +1,11 @@
+applications:
+- path: target/JavaHelloWorldApp.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: chl-liberty-test-01
+  host: chl-liberty-test-01
+  disk_quota: 1024M
+  services:
+  - performance-monitoring-auto
+  - dashDB-fy
