@@ -27,7 +27,7 @@ public class SimpleServlet extends HttpServlet {
         response.setContentType("text/html");
         response.getWriter().print("Hello World!");
         
-        CloudantClient client = ClientBuilder.account("a9d8c3a6-3006-49af-92e5-b3da10409a8c-bluemix:f92cbd858f5958091cae58f6edc0e04bda5849b604461fae8ad8d96f5d4ce8d3")
+        CloudantClient client = ClientBuilder.account("a9d8c3a6-3006-49af-92e5-b3da10409a8c-bluemix.cloudant.com")
                 .username("a9d8c3a6-3006-49af-92e5-b3da10409a8c-bluemix")
                 .password("f92cbd858f5958091cae58f6edc0e04bda5849b604461fae8ad8d96f5d4ce8d3")
                 .build();
