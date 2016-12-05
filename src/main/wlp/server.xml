@@ -9,6 +9,8 @@
                   httpPort="9080">
         <tcpOptions soReuseAddr="true"/>
     </httpEndpoint>
+    <ssl id="defaultSSLConfig" trustStoreRef="defaultTrustStore"/>
+    <keyStore id="defaultTrustStore" location="mfp_keystore" type="JKS" password="zhu88jie" />
 
     <application name="JavaHelloWorldApp" context-root="/JavaHelloWorldApp" location="${appLocation}" type="war"/>
 
