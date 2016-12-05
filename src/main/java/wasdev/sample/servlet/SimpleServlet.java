@@ -28,6 +28,7 @@ import org.bson.conversions.Bson;
 @WebServlet("/SimpleServlet")
 public class SimpleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,6 +49,7 @@ public class SimpleServlet extends HttpServlet {
             System.out.println(db);
         }
         
+        System.out.println("CHL TEST: java home:" + System.getenv("java.home"));
         
         try
         {
