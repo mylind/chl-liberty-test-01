@@ -1,6 +1,7 @@
 package wasdev.sample.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
+import com.mongodb.MongoClientURI;
+
+import org.bson.Document;    
+import org.bson.conversions.Bson;
 
 /**
  * Servlet implementation class SimpleServlet
@@ -37,6 +47,39 @@ public class SimpleServlet extends HttpServlet {
         for ( String db : databases ) {
             System.out.println(db);
         }
+        
+        
+        try
+        {
+        	MongoClientOptions.Builder build = new MongoClientOptions.Builder();
+        	build.connectionsPerHost(50);  
+            //如果当前所有的connection都在使用中，则每个connection上可以有50个线程排队等待  
+            build.threadsAllowedToBlockForConnectionMultiplier(50);  
+            build.connectTimeout(1*60*1000);  
+            build.maxWaitTime(2*60*1000);  
+            MongoClientOptions options = build.build();  
+        	MongoClientURI uri = new MongoClientURI("mongodb://admin:PZFNDYXJCNYXLDQD@bluemix-sandbox-dal-9-portal.3.dblayer.com:15792/admin?ssl=true",build);  
+        	MongoClient mongoClient = new MongoClient(uri);
+        	
+        	MongoDatabase mongoDatabase = mongoClient.getDatabase("movie");  
+            MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("user");  
+            // insert a document  
+            Document document = new Document("x", 1);  
+            mongoCollection.insertOne(document);  
+            document.append("x", 2).append("y", 3);  
+  
+            // replace a document  
+            mongoCollection.replaceOne(Filters.eq("_id", document.get("_id")), document);  
+  
+            // find documents  
+            List<Document> foundDocument = mongoCollection.find().into(new ArrayList<Document>());  
+        	
+        }catch(Exception e)
+        {
+        	e.printStackTrace();
+        }
+        
+        
     }
 
 }
