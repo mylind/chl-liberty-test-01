@@ -11,6 +11,7 @@
     </httpEndpoint>
     <ssl id="defaultSSLConfig" trustStoreRef="defaultTrustStore"/>
     <keyStore id="defaultTrustStore" location="mfp_keystore" type="JKS" password="zhu88jie" />
+    <logging traceSpecification="RRA=all:WAS.j2c=all:com.ibm.ws.jdbc.*=all:Transaction=all" traceFileName="trace.log" maxFileSize="20" maxFiles="10" traceFormat="BASIC"/>
 
     <application name="JavaHelloWorldApp" context-root="/JavaHelloWorldApp" location="${appLocation}" type="war"/>
 
